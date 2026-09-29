@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeginAI株式会社 | すべての人が、AIと共に未来を切り拓ける社会をつくる</title>
+  <meta name="description" content="BeginAI株式会社。毎朝AIが自動でトレンド動画を生成・配信するeラーニングプラットフォーム AI Learning Factory を運営。">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --blue-50: #eff6ff;
+      --blue-100: #dbeafe;
+      --blue-500: #3b82f6;
+      --blue-600: #2563eb;
+      --blue-700: #1d4ed8;
+      --blue-800: #1e40af;
+      --blue-900: #1e3a5f;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      color: var(--gray-800);
+      line-height: 1.7;
+      background: var(--white);
+    }
+
+    /* ===== Header / Nav ===== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--gray-200);
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--blue-700);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span { color: inherit; }
+
+    nav a {
+      color: var(--gray-600);
+      text-decoration: none;
+      font-size: 14px;
+      margin-left: 28px;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--blue-600); }
+
+    /* ===== Hero ===== */
+    .hero {
+      padding: 140px 24px 80px;
+      text-align: center;
+      background: linear-gradient(180deg, var(--blue-50) 0%, var(--white) 100%);
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--gray-900);
+      line-height: 1.3;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--blue-600);
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--gray-500);
+      max-width: 600px;
+      margin: 0 auto 36px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--blue-600);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* ===== Section ===== */
+    section {
+      padding: 80px 24px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--blue-600);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 16px;
+      letter-spacing: -0.3px;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--gray-500);
+      max-width: 640px;
+      margin-bottom: 48px;
+    }
+
+    /* ===== Mission / Vision ===== */
+    .mv-section {
+      background: var(--gray-50);
+    }
+
+    .mv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .mv-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 40px;
+    }
+
+    .mv-card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--blue-600);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .mv-card p {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--gray-900);
+      line-height: 1.6;
+    }
+
+    /* ===== Product ===== */
+    .product-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .product-info h3 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 8px;
+    }
+
+    .product-info .tagline {
+      font-size: 16px;
+      color: var(--blue-600);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .product-info p {
+      font-size: 15px;
+      color: var(--gray-600);
+      margin-bottom: 24px;
+    }
+
+    .product-features {
+      list-style: none;
+    }
+
+    .product-features li {
+      font-size: 14px;
+      color: var(--gray-700);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--gray-100);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .product-features li::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--blue-500);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .product-visual {
+      background: linear-gradient(135deg, var(--blue-600) 0%, var(--blue-800) 100%);
+      border-radius: 12px;
+      padding: 40px;
+      color: var(--white);
+      text-align: center;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .product-visual .icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .product-visual h4 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .product-visual p {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    /* ===== Numbers ===== */
+    .numbers-section {
+      background: var(--blue-600);
+      color: var(--white);
+    }
+
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+
+    .number-item .value {
+      font-size: 44px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .number-item .label {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    /* ===== CEO ===== */
+    .ceo-section {
+      background: var(--gray-50);
+    }
+
+    .ceo-card {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .ceo-photo {
+      width: 280px;
+      height: 340px;
+      background: linear-gradient(135deg, var(--blue-100) 0%, var(--blue-200, #bfdbfe) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .ceo-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .avatar-placeholder {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--blue-500);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 48px;
+      font-weight: 700;
+    }
+
+    .ceo-info h3 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 4px;
+    }
+
+    .ceo-info .title {
+      font-size: 14px;
+      color: var(--blue-600);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .ceo-info p {
+      font-size: 15px;
+      color: var(--gray-600);
+      margin-bottom: 16px;
+    }
+
+    .ceo-info .message {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 20px;
+      font-size: 15px;
+      color: var(--gray-700);
+      line-height: 1.8;
+      margin-top: 20px;
+      border-left: 3px solid var(--blue-500);
+    }
+
+    /* ===== Company Info ===== */
+    .info-section {
+      background: var(--gray-50);
+    }
+
+    .info-table {
+      width: 100%;
+      max-width: 700px;
+      border-collapse: collapse;
+    }
+
+    .info-table tr {
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .info-table th {
+      text-align: left;
+      padding: 14px 20px 14px 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-700);
+      width: 160px;
+      vertical-align: top;
+    }
+
+    .info-table td {
+      padding: 14px 0;
+      font-size: 14px;
+      color: var(--gray-600);
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background: var(--gray-900);
+      color: var(--gray-400);
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    footer .logo-footer {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    footer p {
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    footer .copyright {
+      margin-top: 24px;
+      font-size: 12px;
+      color: var(--gray-500);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 28px; }
+      .hero p { font-size: 16px; }
+      .mv-grid { grid-template-columns: 1fr; }
+      .product-card { grid-template-columns: 1fr; }
+      .numbers-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .ceo-card { grid-template-columns: 1fr; }
+      .ceo-photo { width: 100%; max-width: 280px; margin: 0 auto; }
+      .section-title { font-size: 24px; }
+      nav { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .numbers-grid { grid-template-columns: 1fr 1fr; }
+      .number-item .value { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-inner">
+      <a href="#" class="logo">Begin<span>AI</span></a>
+      <nav>
+        <a href="#mission">Mission</a>
+        <a href="#product">Product</a>
+        <a href="#ceo">CEO</a>
+        <a href="#company">Company</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">2026.05.01 Launch</div>
+    <h1>
+      すべての人が、<br>
+      <em>AIと共に未来を切り拓ける</em><br>
+      社会をつくる
+    </h1>
+    <p>BeginAI株式会社は、AIと共に豊かに生きる人を一人でも多く増やすために活動しています。</p>
+  </section>
+
+  <!-- Mission / Vision -->
+  <section class="mv-section" id="mission">
+    <div class="container">
+      <div class="section-label">Mission & Vision</div>
+      <div class="section-title">私たちが目指すもの</div>
+      <div class="mv-grid">
+        <div class="mv-card">
+          <h3>Mission</h3>
+          <p>すべての人が、AIと共に自分の力で未来を切り拓ける社会をつくる</p>
+        </div>
+        <div class="mv-card">
+          <h3>Vision</h3>
+          <p>AIに淘汰される不安をなくし、AIと伴走して豊かに生きる人を一人でも多く増やす</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product -->
+  <section id="product">
+    <div class="container">
+      <div class="section-label">Product</div>
+      <div class="section-title">AI Learning Factory</div>
+      <div class="section-desc">毎朝AIが自動でトレンド動画を生成・配信するeラーニングプラットフォーム</div>
+
+      <div class="product-card">
+        <div class="product-info">
+          <h3>AI Learning Factory</h3>
+          <div class="tagline">毎朝届く、AIトレンド動画。あなたのAI力を毎日アップデート。</div>
+          <p>
+            AIの進化は速すぎて、追いつくのが大変。AI Learning Factoryは、
+            毎朝AIが自動で最新トレンド動画を生成し、あなたに届けます。
+            1本5-10分。通勤中にAI力をアップデートできます。
+          </p>
+          <ul class="product-features">
+            <li>毎朝AIが自動でトレンド動画を生成・配信</li>
+            <li>1本5-10分、通勤時間に視聴可能</li>
+            <li>AI最新ニュース、ツール活用法、業界別活用事例をカバー</li>
+            <li>非エンジニアでもわかりやすい解説</li>
+            <li>個人でもチームでも月額10,000円</li>
+          </ul>
+        </div>
+        <div class="product-visual">
+          <div class="icon">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </div>
+          <h4>Every Morning, AI Delivers.</h4>
+          <p>AIが毎朝、あなた専用の学びを届けます</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Numbers -->
+  <section class="numbers-section">
+    <div class="container">
+      <div class="numbers-grid">
+        <div class="number-item">
+          <div class="value">5-10min</div>
+          <div class="label">1本あたりの動画時間</div>
+        </div>
+        <div class="number-item">
+          <div class="value">365</div>
+          <div class="label">年間配信本数</div>
+        </div>
+        <div class="number-item">
+          <div class="value">24h</div>
+          <div class="label">以内のAIニュースをカバー</div>
+        </div>
+        <div class="number-item">
+          <div class="value">&yen;10,000</div>
+          <div class="label">月額（個人・法人同一）</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CEO -->
+  <section class="ceo-section" id="ceo">
+    <div class="container">
+      <div class="section-label">CEO Message</div>
+      <div class="section-title">代表挨拶</div>
+      <div class="section-desc"></div>
+
+      <div class="ceo-card">
+        <div class="ceo-photo">
+          <img src="picture/tokuyama.png" alt="徳山 CEO">
+        </div>
+        <div class="ceo-info">
+          <h3>徳山</h3>
+          <div class="title">代表取締役 CEO</div>
+          <p>
+            非エンジニアながらAIを活用して10以上のWebサービスを構築してきた実践者。
+            対面でのAI開発勉強会も主催し、非エンジニアがAIと伴走できる人材を育成している。
+          </p>
+          <div class="message">
+            「AIの進化が速すぎて追いつけない」。勉強会でお会いする方の多くが、そう感じています。
+            30代-40代のビジネスパーソンが、漠然とした不安を抱えている。
+            でも本当は、AIは私たちを淘汰するものではなく、共に歩むパートナーです。<br><br>
+            私が離れても、皆さまが一人でAIと伴走して、実現したいことを形にできる。
+            悩みを解決できる。そんな状態をつくりたい。それがBeginAIの原点です。<br><br>
+            毎朝届くAIトレンド動画で、あなたのAI力を毎日アップデートする。
+            BeginAIは、すべての人がAIと共に豊かな人生を歩める社会を目指します。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company -->
+  <section class="info-section" id="company">
+    <div class="container">
+      <div class="section-label">Company</div>
+      <div class="section-title">会社概要</div>
+      <div class="section-desc">BeginAI株式会社の基本情報</div>
+
+      <table class="info-table">
+        <tr>
+          <th>社名</th>
+          <td>BeginAI株式会社</td>
+        </tr>
+        <tr>
+          <th>代表</th>
+          <td>徳山　貴士</td>
+        </tr>
+        <tr>
+          <th>所在地</th>
+          <td>大阪府大阪市北区梅田一丁目1番3号 大阪駅前第3ビル29階1-1-1号室</td>
+        </tr>
+        <tr>
+          <th>事業内容</th>
+          <td>AI Learning Factoryの企画・開発・運営、AI顧問、受託開発</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="logo-footer">BeginAI</div>
+    <p>すべての人が、AIと共に未来を切り拓ける社会をつくる</p>
+    <div class="copyright">&copy; 2026 BeginAI Inc. All rights reserved.</div>
+  </footer>
+
+</body>
+</html>
