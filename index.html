@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BeginAI株式会社 | すべての人が、AIと共に未来を切り拓ける社会をつくる</title>
-  <meta name="description" content="BeginAI株式会社。毎朝AIが自動でトレンド動画を生成・配信するeラーニングプラットフォーム AI Learning Factory を運営。">
+  <meta name="description" content="BeginAI株式会社。AIソフトウェアの開発、AIを活用した教育サービス、DX推進支援を行っています。">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -106,17 +106,6 @@
       margin: 0 auto 36px;
     }
 
-    .hero-badge {
-      display: inline-block;
-      background: var(--blue-600);
-      color: var(--white);
-      font-size: 13px;
-      font-weight: 600;
-      padding: 6px 16px;
-      border-radius: 20px;
-      margin-bottom: 20px;
-    }
-
     /* ===== Section ===== */
     section {
       padding: 80px 24px;
@@ -183,115 +172,6 @@
       font-weight: 600;
       color: var(--gray-900);
       line-height: 1.6;
-    }
-
-    /* ===== Product ===== */
-    .product-card {
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: 12px;
-      padding: 48px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .product-info h3 {
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--gray-900);
-      margin-bottom: 8px;
-    }
-
-    .product-info .tagline {
-      font-size: 16px;
-      color: var(--blue-600);
-      font-weight: 500;
-      margin-bottom: 20px;
-    }
-
-    .product-info p {
-      font-size: 15px;
-      color: var(--gray-600);
-      margin-bottom: 24px;
-    }
-
-    .product-features {
-      list-style: none;
-    }
-
-    .product-features li {
-      font-size: 14px;
-      color: var(--gray-700);
-      padding: 8px 0;
-      border-bottom: 1px solid var(--gray-100);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .product-features li::before {
-      content: "";
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      background: var(--blue-500);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .product-visual {
-      background: linear-gradient(135deg, var(--blue-600) 0%, var(--blue-800) 100%);
-      border-radius: 12px;
-      padding: 40px;
-      color: var(--white);
-      text-align: center;
-      min-height: 320px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .product-visual .icon {
-      font-size: 48px;
-      margin-bottom: 16px;
-    }
-
-    .product-visual h4 {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .product-visual p {
-      font-size: 14px;
-      opacity: 0.8;
-    }
-
-    /* ===== Numbers ===== */
-    .numbers-section {
-      background: var(--blue-600);
-      color: var(--white);
-    }
-
-    .numbers-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
-      text-align: center;
-    }
-
-    .number-item .value {
-      font-size: 44px;
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-
-    .number-item .label {
-      font-size: 14px;
-      opacity: 0.8;
     }
 
     /* ===== CEO ===== */
@@ -400,6 +280,24 @@
       color: var(--gray-600);
     }
 
+    .business-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: item;
+    }
+
+    .business-list li {
+      counter-increment: item;
+      padding-left: 2.5em;
+      text-indent: -2.5em;
+      line-height: 1.8;
+    }
+
+    .business-list li::before {
+      content: "（" counter(item) "）";
+    }
+
     /* ===== Footer ===== */
     footer {
       background: var(--gray-900);
@@ -431,17 +329,10 @@
       .hero h1 { font-size: 28px; }
       .hero p { font-size: 16px; }
       .mv-grid { grid-template-columns: 1fr; }
-      .product-card { grid-template-columns: 1fr; }
-      .numbers-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
       .ceo-card { grid-template-columns: 1fr; }
       .ceo-photo { width: 100%; max-width: 280px; margin: 0 auto; }
       .section-title { font-size: 24px; }
       nav { display: none; }
-    }
-
-    @media (max-width: 480px) {
-      .numbers-grid { grid-template-columns: 1fr 1fr; }
-      .number-item .value { font-size: 32px; }
     }
   </style>
 </head>
@@ -453,7 +344,6 @@
       <a href="#" class="logo">Begin<span>AI</span></a>
       <nav>
         <a href="#mission">Mission</a>
-        <a href="#product">Product</a>
         <a href="#ceo">CEO</a>
         <a href="#company">Company</a>
       </nav>
@@ -462,7 +352,6 @@
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-badge">2026.05.01 Launch</div>
     <h1>
       すべての人が、<br>
       <em>AIと共に未来を切り拓ける</em><br>
@@ -484,67 +373,6 @@
         <div class="mv-card">
           <h3>Vision</h3>
           <p>AIに淘汰される不安をなくし、AIと伴走して豊かに生きる人を一人でも多く増やす</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Product -->
-  <section id="product">
-    <div class="container">
-      <div class="section-label">Product</div>
-      <div class="section-title">AI Learning Factory</div>
-      <div class="section-desc">毎朝AIが自動でトレンド動画を生成・配信するeラーニングプラットフォーム</div>
-
-      <div class="product-card">
-        <div class="product-info">
-          <h3>AI Learning Factory</h3>
-          <div class="tagline">毎朝届く、AIトレンド動画。あなたのAI力を毎日アップデート。</div>
-          <p>
-            AIの進化は速すぎて、追いつくのが大変。AI Learning Factoryは、
-            毎朝AIが自動で最新トレンド動画を生成し、あなたに届けます。
-            1本5-10分。通勤中にAI力をアップデートできます。
-          </p>
-          <ul class="product-features">
-            <li>毎朝AIが自動でトレンド動画を生成・配信</li>
-            <li>1本5-10分、通勤時間に視聴可能</li>
-            <li>AI最新ニュース、ツール活用法、業界別活用事例をカバー</li>
-            <li>非エンジニアでもわかりやすい解説</li>
-            <li>個人でもチームでも月額10,000円</li>
-          </ul>
-        </div>
-        <div class="product-visual">
-          <div class="icon">
-            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-          </div>
-          <h4>Every Morning, AI Delivers.</h4>
-          <p>AIが毎朝、あなた専用の学びを届けます</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Numbers -->
-  <section class="numbers-section">
-    <div class="container">
-      <div class="numbers-grid">
-        <div class="number-item">
-          <div class="value">5-10min</div>
-          <div class="label">1本あたりの動画時間</div>
-        </div>
-        <div class="number-item">
-          <div class="value">365</div>
-          <div class="label">年間配信本数</div>
-        </div>
-        <div class="number-item">
-          <div class="value">24h</div>
-          <div class="label">以内のAIニュースをカバー</div>
-        </div>
-        <div class="number-item">
-          <div class="value">&yen;10,000</div>
-          <div class="label">月額（個人・法人同一）</div>
         </div>
       </div>
     </div>
@@ -604,7 +432,18 @@
         </tr>
         <tr>
           <th>事業内容</th>
-          <td>AI Learning Factoryの企画・開発・運営、AI顧問、受託開発</td>
+          <td>
+            <ol class="business-list">
+              <li>人工知能に関するソフトウェアの開発、販売及び運用</li>
+              <li>AI技術を活用した教育サービスの企画、開発及び提供</li>
+              <li>eラーニングシステムの開発、販売及び運営</li>
+              <li>コンピュータシステム及びソフトウェアの企画、設計、開発、販売、保守及び運用</li>
+              <li>DX（デジタルトランスフォーメーション）推進に関する支援及びコンサルティング業務</li>
+              <li>インターネットを利用した各種情報提供サービス</li>
+              <li>経営コンサルティング業務</li>
+              <li>前各号に附帯関連する一切の事業</li>
+            </ol>
+          </td>
         </tr>
       </table>
     </div>
