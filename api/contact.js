@@ -6,6 +6,25 @@ const SERVICE_LABELS = {
   'ai-advisor': 'AI顧問（自社で進めたい）',
   development: '開発代行（実装まで任せたい）'
 };
+const SMTP_ERROR_CODES = new Set([
+  'EAUTH',
+  'ECONNECTION',
+  'EDNS',
+  'EENVELOPE',
+  'EMESSAGE',
+  'ESOCKET',
+  'ETIMEDOUT'
+]);
+const SMTP_COMMANDS = new Set([
+  'AUTH',
+  'AUTH LOGIN',
+  'AUTH PLAIN',
+  'AUTH XOAUTH2',
+  'CONN',
+  'DATA',
+  'MAIL FROM',
+  'RCPT TO'
+]);
 
 function singleLineValue(value, maxLength) {
   if (typeof value !== 'string' || /[\r\n]/.test(value)) return '';
@@ -22,6 +41,27 @@ function isValidEmail(value) {
   return value.length <= 254
     && !/[\r\n]/.test(value)
     && /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+$/.test(value);
+}
+
+function smtpDiagnostic(error) {
+  const diagnostic = {};
+  if (!error || typeof error !== 'object') return diagnostic;
+
+  if (typeof error.code === 'string' && SMTP_ERROR_CODES.has(error.code)) {
+    diagnostic.code = error.code;
+  }
+  if (
+    Number.isInteger(error.responseCode)
+    && error.responseCode >= 100
+    && error.responseCode <= 599
+  ) {
+    diagnostic.responseCode = error.responseCode;
+  }
+  if (typeof error.command === 'string' && SMTP_COMMANDS.has(error.command)) {
+    diagnostic.command = error.command;
+  }
+
+  return diagnostic;
 }
 
 function loadSmtpConfig() {
@@ -169,8 +209,8 @@ module.exports = async function contactHandler(request, response) {
     });
 
     return response.status(200).json({ success: true });
-  } catch {
-    console.error('Contact SMTP delivery failed');
+  } catch (error) {
+    console.error('Contact SMTP delivery failed', smtpDiagnostic(error));
     return response.status(502).json({ error: '送信できませんでした' });
   }
 };

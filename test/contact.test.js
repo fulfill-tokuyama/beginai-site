@@ -175,10 +175,29 @@ test('accepts the honeypot silently without sending mail', async () => {
 });
 
 test('returns a generic error when SMTP delivery fails', async () => {
-  sendMailFailure = new Error('mock SMTP failure');
-  const response = await invoke();
+  sendMailFailure = Object.assign(new Error('must not be logged'), {
+    code: 'EAUTH',
+    responseCode: 535,
+    command: 'AUTH PLAIN',
+    response: 'must not be logged either'
+  });
+  const logCalls = [];
+  const originalConsoleError = console.error;
+  console.error = (...args) => logCalls.push(args);
+
+  let response;
+  try {
+    response = await invoke();
+  } finally {
+    console.error = originalConsoleError;
+  }
 
   assert.equal(response.statusCode, 502);
   assert.deepEqual(response.payload, { error: '送信できませんでした' });
   assert.equal(mailCalls.length, 1);
+  assert.deepEqual(logCalls, [[
+    'Contact SMTP delivery failed',
+    { code: 'EAUTH', responseCode: 535, command: 'AUTH PLAIN' }
+  ]]);
+  assert.doesNotMatch(JSON.stringify(logCalls), /must not be logged/);
 });
