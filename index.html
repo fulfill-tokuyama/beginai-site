@@ -74,7 +74,7 @@
 
     .logo span { color: inherit; }
 
-    nav a {
+    header nav a {
       color: var(--gray-600);
       text-decoration: none;
       font-size: 14px;
@@ -82,7 +82,7 @@
       transition: color 0.2s;
     }
 
-    nav a:hover { color: var(--blue-600); }
+    header nav a:hover { color: var(--blue-600); }
 
     .nav-actions {
       display: flex;
@@ -92,12 +92,13 @@
     .menu-toggle {
       display: inline-flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      gap: 5px;
+      gap: 4px;
       width: 44px;
       height: 44px;
       margin-left: 28px;
+      padding-left: 13px;
       border: 0;
       border-radius: 50%;
       background: var(--blue-600);
@@ -109,142 +110,123 @@
 
     .menu-toggle span {
       display: block;
+      width: 18px;
       height: 2px;
       border-radius: 2px;
       background: var(--white);
+      transition: transform 0.25s, opacity 0.2s, width 0.25s;
     }
 
-    .menu-toggle span:nth-child(1) { width: 18px; margin-left: 4px; }
-    .menu-toggle span:nth-child(2) { width: 22px; }
-    .menu-toggle span:nth-child(3) { width: 14px; margin-left: 8px; }
+    .menu-toggle span:nth-child(1) { width: 14px; }
+    .menu-toggle span:nth-child(3) { width: 10px; }
+
+    .menu-toggle[aria-expanded="true"] span:nth-child(1) { width: 18px; transform: translateY(6px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .menu-toggle[aria-expanded="true"] span:nth-child(3) { width: 18px; transform: translateY(-6px) rotate(-45deg); }
 
     body.menu-open { overflow: hidden; }
 
     .site-menu {
       position: fixed;
-      inset: 0;
-      z-index: 200;
+      top: 64px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 90;
       overflow-y: auto;
-      background:
-        radial-gradient(circle at 75% 30%, rgba(59, 130, 246, 0.35), transparent 45%),
-        linear-gradient(160deg, var(--blue-700) 0%, var(--blue-800) 100%);
-      color: var(--white);
-      animation: menu-fade 0.25s ease;
+      background: #f7faff;
+      animation: menu-in 0.25s ease;
     }
 
     .site-menu[hidden] { display: none; }
 
-    @keyframes menu-fade {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    @keyframes menu-in {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: none; }
     }
 
-    .site-menu-head {
+    .site-menu-inner {
       max-width: 1100px;
+      min-height: 100%;
       margin: 0 auto;
-      padding: 0 24px;
-      height: 64px;
+      padding: 8px 0 32px;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+    }
+
+    .site-menu-item {
+      display: flex;
+      align-items: baseline;
       justify-content: space-between;
-    }
-
-    .site-menu-logo {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--white);
-      text-decoration: none;
-      letter-spacing: -0.5px;
-    }
-
-    .menu-close {
-      position: relative;
-      width: 44px;
-      height: 44px;
-      border: 0;
-      background: none;
-      cursor: pointer;
-    }
-
-    .menu-close::before,
-    .menu-close::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 26px;
-      height: 2px;
-      background: var(--white);
-    }
-
-    .menu-close::before { transform: translate(-50%, -50%) rotate(45deg); }
-    .menu-close::after { transform: translate(-50%, -50%) rotate(-45deg); }
-
-    .site-menu-list,
-    .submenu { list-style: none; }
-
-    .site-menu-list {
-      max-width: 1100px;
-      margin: 24px auto 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.25);
-    }
-
-    .site-menu-list > li { border-bottom: 1px solid rgba(255, 255, 255, 0.25); }
-
-    .site-menu-list a {
-      display: block;
-      padding: 22px 24px;
-      color: var(--white);
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      gap: 12px;
+      padding: 20px 24px;
+      border-bottom: 1px solid #e3e9f5;
       text-decoration: none;
       transition: background 0.2s;
     }
 
-    .site-menu-list a:hover { background: rgba(255, 255, 255, 0.08); }
+    .site-menu-item:hover { background: var(--blue-50); }
 
-    .site-menu-row { display: flex; }
-    .site-menu-row a { flex: 1; }
-
-    .submenu-toggle {
-      position: relative;
-      flex: 0 0 68px;
-      border: 0;
-      border-left: 1px solid rgba(255, 255, 255, 0.25);
-      background: none;
-      cursor: pointer;
+    .site-menu-item strong {
+      font-size: 18px;
+      color: var(--gray-900);
     }
 
-    .submenu-toggle::before,
-    .submenu-toggle::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 18px;
-      height: 1.5px;
+    .site-menu-item small {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-600);
+    }
+
+    .site-menu-item.has-chips { border-bottom: 0; padding-bottom: 12px; }
+
+    .site-menu-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0 24px 20px;
+      border-bottom: 1px solid #e3e9f5;
+    }
+
+    .site-menu-chips a {
+      padding: 6px 14px;
+      border: 1px solid #c9d8f6;
+      border-radius: 999px;
       background: var(--white);
-      transform: translate(-50%, -50%);
-      transition: transform 0.2s;
+      color: var(--blue-700);
+      font-size: 13px;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
     }
 
-    .submenu-toggle::after { transform: translate(-50%, -50%) rotate(90deg); }
-    .submenu-toggle[aria-expanded="true"]::after { transform: translate(-50%, -50%) rotate(0deg); }
+    .site-menu-chips a:hover { background: var(--blue-50); border-color: var(--blue-500); }
 
-    .submenu {
-      padding-bottom: 12px;
-      background: rgba(0, 0, 0, 0.08);
-    }
-
-    .submenu a {
-      padding: 12px 24px 12px 40px;
+    .site-menu-cta {
+      margin: 0 24px;
+      padding: 16px;
+      border-radius: 999px;
+      background: var(--blue-600);
+      color: var(--white);
       font-size: 15px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.85);
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      transition: background 0.2s;
     }
 
-    .site-menu-list .site-menu-contact { color: rgba(255, 255, 255, 0.75); }
+    .site-menu-cta:hover { background: var(--blue-700); }
+
+    @media (min-width: 769px) {
+      .site-menu-cta { align-self: flex-start; padding: 16px 56px; }
+    }
+
+    .site-menu-list-end { flex: 1; min-height: 32px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .site-menu, .menu-toggle span { animation: none; transition: none; }
+    }
 
     /* ===== Hero ===== */
     .hero {
@@ -966,11 +948,11 @@
       .ceo-card { grid-template-columns: 1fr; }
       .ceo-photo { width: 100%; max-width: 280px; margin: 0 auto; }
       .section-title { font-size: 24px; }
-      nav { display: none; }
+      header nav { display: none; }
       .menu-toggle { margin-left: 0; }
-      .site-menu-head { padding: 0 20px; }
-      .site-menu-list a { padding-left: 20px; padding-right: 20px; }
-      .submenu a { padding-left: 36px; }
+      .site-menu-item { padding-left: 20px; padding-right: 20px; }
+      .site-menu-chips { padding-left: 20px; padding-right: 20px; }
+      .site-menu-cta { margin-left: 20px; margin-right: 20px; }
     }
 
     @media (max-width: 420px) {
@@ -1001,30 +983,22 @@
   </header>
 
   <!-- Menu -->
-  <div class="site-menu" id="site-menu" role="dialog" aria-modal="true" aria-label="サイトメニュー" hidden>
-    <div class="site-menu-head">
-      <a href="#" class="site-menu-logo">BeginAI</a>
-      <button class="menu-close" type="button" aria-label="メニューを閉じる"></button>
+  <nav class="site-menu" id="site-menu" aria-label="サイトメニュー" hidden>
+    <div class="site-menu-inner">
+      <a class="site-menu-item" href="#mission"><strong>BeginAIについて</strong><small>About</small></a>
+      <a class="site-menu-item has-chips" href="#services"><strong>事業内容</strong><small>Services</small></a>
+      <div class="site-menu-chips">
+        <a href="#advisor">AI 顧問</a>
+        <a href="#development">開発代行</a>
+        <a href="#examples">実績・事例</a>
+        <a href="#consultation">ご相談の流れ</a>
+      </div>
+      <a class="site-menu-item" href="#ceo"><strong>代表挨拶</strong><small>Message</small></a>
+      <a class="site-menu-item" href="#company"><strong>会社概要</strong><small>Company</small></a>
+      <div class="site-menu-list-end"></div>
+      <a class="site-menu-cta" href="#contact">無料で相談する</a>
     </div>
-    <ul class="site-menu-list">
-      <li><a href="#mission">BeginAIについて</a></li>
-      <li class="has-sub">
-        <div class="site-menu-row">
-          <a href="#services">事業内容</a>
-          <button class="submenu-toggle" type="button" aria-expanded="false" aria-controls="submenu-services" aria-label="事業内容の項目を開く"></button>
-        </div>
-        <ul class="submenu" id="submenu-services" hidden>
-          <li><a href="#advisor">AI 顧問</a></li>
-          <li><a href="#development">開発代行</a></li>
-          <li><a href="#examples">実績・事例</a></li>
-          <li><a href="#consultation">ご相談の流れ</a></li>
-        </ul>
-      </li>
-      <li><a href="#ceo">代表挨拶</a></li>
-      <li><a href="#company">会社概要</a></li>
-      <li><a href="#contact" class="site-menu-contact">お問い合わせ</a></li>
-    </ul>
-  </div>
+  </nav>
 
   <!-- Hero -->
   <section class="hero">
@@ -1315,31 +1289,24 @@
   <script>
     (() => {
       const menu = document.getElementById('site-menu');
-      const openButton = document.querySelector('.menu-toggle');
-      const closeButton = menu.querySelector('.menu-close');
+      const toggle = document.querySelector('.menu-toggle');
 
       const setMenu = (open) => {
         menu.hidden = !open;
-        openButton.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
         document.body.classList.toggle('menu-open', open);
-        (open ? closeButton : openButton).focus();
       };
 
-      openButton.addEventListener('click', () => setMenu(true));
-      closeButton.addEventListener('click', () => setMenu(false));
+      toggle.addEventListener('click', () => setMenu(menu.hidden));
       menu.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', () => setMenu(false));
       });
-      menu.querySelectorAll('.submenu-toggle').forEach((toggle) => {
-        toggle.addEventListener('click', () => {
-          const submenu = document.getElementById(toggle.getAttribute('aria-controls'));
-          const open = submenu.hidden;
-          submenu.hidden = !open;
-          toggle.setAttribute('aria-expanded', String(open));
-        });
-      });
       document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && !menu.hidden) setMenu(false);
+        if (event.key === 'Escape' && !menu.hidden) {
+          setMenu(false);
+          toggle.focus();
+        }
       });
     })();
 
