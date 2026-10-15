@@ -920,8 +920,27 @@
       margin-bottom: 4px;
     }
 
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 4px 20px;
+      margin-top: 20px;
+      font-size: 12px;
+    }
+
+    .footer-links a {
+      color: var(--gray-400);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+      text-decoration: underline;
+    }
+
     footer .copyright {
-      margin-top: 24px;
+      margin-top: 12px;
       font-size: 12px;
       color: var(--gray-500);
     }
@@ -1284,6 +1303,10 @@
   <footer>
     <div class="logo-footer">BeginAI</div>
     <p>すべての人が、AIと共に未来を切り拓ける社会をつくる</p>
+    <div class="footer-links">
+      <a href="/privacy.html">プライバシーポリシー</a>
+      <a href="/personal-information.html">個人情報保護方針</a>
+    </div>
     <div class="copyright">&copy; 2026 BeginAI Inc. All rights reserved.</div>
   </footer>
 
