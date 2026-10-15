@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BeginAI株式会社 | すべての人が、AIと共に未来を切り拓ける社会をつくる</title>
-  <meta name="description" content="BeginAI株式会社。AIソフトウェアの開発、AIを活用した教育サービス、DX推進支援を行っています。">
+  <meta name="description" content="BeginAI株式会社。AI顧問とAI・Web開発代行で、業務整理、AI選定、自社での制作支援から設計・実装まで支援します。">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -34,6 +34,11 @@
       color: var(--gray-800);
       line-height: 1.7;
       background: var(--white);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
     }
 
     /* ===== Header / Nav ===== */
@@ -77,6 +82,32 @@
     }
 
     nav a:hover { color: var(--blue-600); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      margin-left: 28px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: var(--blue-600);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .header-cta:hover {
+      background: var(--blue-700);
+      transform: translateY(-1px);
+    }
 
     /* ===== Hero ===== */
     .hero {
@@ -172,6 +203,275 @@
       font-weight: 600;
       color: var(--gray-900);
       line-height: 1.6;
+    }
+
+    /* ===== Services ===== */
+    .services-section {
+      background: var(--white);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .service-card {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      padding: 36px;
+      background: var(--white);
+    }
+
+    .service-card.featured {
+      border-color: var(--blue-200, #bfdbfe);
+      background: linear-gradient(180deg, var(--blue-50) 0%, var(--white) 72%);
+    }
+
+    .service-type {
+      align-self: flex-start;
+      display: inline-flex;
+      margin-bottom: 16px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--blue-100);
+      color: var(--blue-700);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .service-card h3 {
+      font-size: 24px;
+      color: var(--gray-900);
+      margin-bottom: 8px;
+    }
+
+    .service-lead {
+      margin-bottom: 8px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--gray-200);
+      color: var(--gray-600);
+      font-size: 15px;
+    }
+
+    .service-detail {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .service-detail h4,
+    .service-method strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--blue-700);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .service-detail ul {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .service-detail li {
+      position: relative;
+      padding-left: 18px;
+      color: var(--gray-700);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .service-detail li::before {
+      content: "";
+      position: absolute;
+      left: 3px;
+      top: 9px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue-500);
+    }
+
+    .tool-chip-list {
+      display: flex !important;
+      flex-wrap: wrap;
+      gap: 8px !important;
+    }
+
+    .tool-chip-list li {
+      padding: 7px 10px;
+      border: 1px solid var(--blue-100);
+      border-radius: 6px;
+      background: var(--blue-50);
+      color: var(--blue-800);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .tool-chip-list li::before {
+      display: none;
+    }
+
+    .service-method {
+      margin-top: auto;
+      padding: 18px;
+      border-radius: 8px;
+      background: var(--gray-50);
+      color: var(--gray-600);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .service-method strong {
+      margin-bottom: 4px;
+    }
+
+    .examples-panel {
+      padding: 36px;
+      border-radius: 16px;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+    }
+
+    .examples-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .examples-heading h3 {
+      color: var(--gray-900);
+      font-size: 20px;
+    }
+
+    .examples-badge {
+      flex-shrink: 0;
+      padding: 5px 10px;
+      border: 1px solid var(--blue-100);
+      border-radius: 999px;
+      color: var(--blue-700);
+      background: var(--white);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .example-list {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .example-list li {
+      display: flex;
+      align-items: center;
+      min-height: 62px;
+      padding: 12px 14px;
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--gray-700);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    .examples-disclaimer {
+      color: var(--gray-500);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .consultation-panel {
+      margin-top: 32px;
+      padding: 42px;
+      border-radius: 16px;
+      background: var(--blue-900);
+      color: var(--white);
+    }
+
+    .consultation-panel h3 {
+      margin-bottom: 8px;
+      font-size: 24px;
+    }
+
+    .consultation-panel > p {
+      max-width: 720px;
+      color: var(--blue-100);
+      font-size: 15px;
+    }
+
+    .consultation-flow {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 28px 0;
+      list-style: none;
+      counter-reset: consultation-step;
+    }
+
+    .consultation-flow li {
+      counter-increment: consultation-step;
+      position: relative;
+      min-height: 108px;
+      padding: 18px 16px 18px 54px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--blue-100);
+      font-size: 13px;
+    }
+
+    .consultation-flow li::before {
+      content: counter(consultation-step);
+      position: absolute;
+      left: 16px;
+      top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--blue-500);
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .consultation-flow strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--white);
+      font-size: 15px;
+    }
+
+    .primary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--blue-800);
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .primary-button:hover {
+      background: var(--blue-50);
+      transform: translateY(-1px);
     }
 
     /* ===== CEO ===== */
@@ -333,13 +633,29 @@
 
     /* ===== Responsive ===== */
     @media (max-width: 768px) {
+      section { padding: 64px 20px; }
+      .nav-inner { padding: 0 20px; }
       .hero h1 { font-size: 28px; }
       .hero p { font-size: 16px; }
       .mv-grid { grid-template-columns: 1fr; }
+      .service-grid { grid-template-columns: 1fr; }
+      .service-card { padding: 28px 24px; }
+      .service-summary { min-height: 0; }
+      .examples-panel { padding: 28px 20px; }
+      .examples-heading { align-items: flex-start; flex-direction: column; }
+      .example-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .consultation-panel { padding: 32px 24px; }
+      .consultation-flow { grid-template-columns: 1fr; }
       .ceo-card { grid-template-columns: 1fr; }
       .ceo-photo { width: 100%; max-width: 280px; margin: 0 auto; }
       .section-title { font-size: 24px; }
       nav { display: none; }
+      .header-cta { margin-left: 0; padding: 8px 14px; }
+    }
+
+    @media (max-width: 420px) {
+      .example-list { grid-template-columns: 1fr; }
+      .primary-button { width: 100%; }
     }
   </style>
 </head>
@@ -349,11 +665,15 @@
   <header>
     <div class="nav-inner">
       <a href="#" class="logo">Begin<span>AI</span></a>
-      <nav>
-        <a href="#mission">Mission</a>
-        <a href="#ceo">CEO</a>
-        <a href="#company">Company</a>
-      </nav>
+      <div class="nav-actions">
+        <nav>
+          <a href="#mission">Mission</a>
+          <a href="#services">Services</a>
+          <a href="#ceo">CEO</a>
+          <a href="#company">Company</a>
+        </nav>
+        <a class="header-cta" href="https://beginai-hp-service.vercel.app/#contact">相談する</a>
+      </div>
     </div>
   </header>
 
@@ -381,6 +701,129 @@
           <h3>Vision</h3>
           <p>AIに淘汰される不安をなくし、AIと伴走して豊かに生きる人を一人でも多く増やす</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <div class="section-label">Services</div>
+      <div class="section-title">AI活用を、相談から実装まで</div>
+      <div class="section-desc">自分たちでつくるための伴走支援と、つくるところまで任せられる開発代行。まず相談内容を伺い、無料デモで確認してから、合う進め方を選べます。</div>
+
+      <div class="service-grid">
+        <article class="service-card">
+          <div class="service-type">自社で進めたい方へ</div>
+          <h3>AI 顧問</h3>
+          <p class="service-lead">業務を整理し、使うAIと必要な仕組みを決め、自社で形にできるよう伴走します。</p>
+
+          <div class="service-detail">
+            <h4>こんなお困りごと</h4>
+            <ul>
+              <li>AIを導入したいが、どの業務から始めればよいか分からない</li>
+              <li>AIツールが多く、自社に合うものを選べない</li>
+              <li>作りたい仕組みはあるが、要件や手順に落とし込めない</li>
+            </ul>
+          </div>
+
+          <div class="service-detail">
+            <h4>相談できること</h4>
+            <ul>
+              <li>業務の棚卸しと、AIを使う範囲の優先順位づけ</li>
+              <li>業務に合うAIサービスや進め方の選定</li>
+              <li>必要な機能・データ・運用方法の整理</li>
+              <li>AIと一緒に自作する手順や改善方法</li>
+            </ul>
+          </div>
+
+          <div class="service-detail">
+            <h4>自社で作れるツールの例</h4>
+            <ul class="tool-chip-list">
+              <li>企業調査</li>
+              <li>商談準備</li>
+              <li>記事・投稿案</li>
+              <li>FAQのたたき台</li>
+              <li>AIタスク管理の試作</li>
+            </ul>
+          </div>
+
+          <div class="service-method">
+            <strong>支援方法</strong>
+            <p>相談・壁打ちで次にやることを整理し、設計や制作途中の内容を一緒に確認します。実際につくるのはお客さまです。</p>
+          </div>
+        </article>
+
+        <article class="service-card featured">
+          <div class="service-type">実装まで任せたい方へ</div>
+          <h3>開発代行</h3>
+          <p class="service-lead">相談内容をもとに、業務に合わせたAIツールやWebサービスを設計・実装します。</p>
+
+          <div class="service-detail">
+            <h4>こんなお困りごと</h4>
+            <ul>
+              <li>自社で制作する時間や担当者を確保できない</li>
+              <li>複数の業務やデータをつなぐ仕組みが必要</li>
+              <li>試作したものを、実際の業務で使える形にしたい</li>
+            </ul>
+          </div>
+
+          <div class="service-detail">
+            <h4>相談できること</h4>
+            <ul>
+              <li>対象業務・利用者・必要なデータの整理</li>
+              <li>必要な機能と、優先して作る範囲の決定</li>
+              <li>AIや外部サービスを含む構成の検討</li>
+              <li>完成後の使い方や運用方法の設計</li>
+            </ul>
+          </div>
+
+          <div class="service-detail">
+            <h4>開発できるツールの例</h4>
+            <ul class="tool-chip-list">
+              <li>顧客管理（CRM）</li>
+              <li>企業調査・商談準備</li>
+              <li>AIタスク管理</li>
+              <li>OCR・文字読み取り</li>
+              <li>FAQ対応</li>
+              <li>Web・学習サイト</li>
+            </ul>
+          </div>
+
+          <div class="service-method">
+            <strong>支援方法</strong>
+            <p>相談・ヒアリングから要件整理、設計、実装まで一緒に進めます。内容と優先順位を確認しながら、必要な範囲を形にします。</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="examples-panel">
+        <div class="examples-heading">
+          <h3>代表が実際に形にした例</h3>
+          <span class="examples-badge">代表の個人制作例</span>
+        </div>
+        <ul class="example-list">
+          <li>顧客管理（CRM）</li>
+          <li>企業調査</li>
+          <li>商談準備</li>
+          <li>AIタスク管理</li>
+          <li>記事・投稿案の作成</li>
+          <li>OCR・文字読み取り</li>
+          <li>FAQ対応</li>
+          <li>Web・学習サイト</li>
+        </ul>
+        <p class="examples-disclaimer">※ 掲載例は代表が個人で制作したもので、顧客への納品実績を示すものではありません。OCRなど一部は試作・検証段階です。</p>
+      </div>
+
+      <div class="consultation-panel" id="consultation">
+        <h3>相談から、無料デモで確かめる</h3>
+        <p>まずは業務や実現したいことを伺います。相談内容に近い無料デモを見て、実際のイメージを確認してから進め方を選べます。</p>
+        <ol class="consultation-flow">
+          <li><strong>相談・ヒアリング</strong>対象業務、困りごと、実現したいことを整理します。</li>
+          <li><strong>無料デモで確認</strong>具体的な画面と動きで、AI活用のイメージを確かめます。</li>
+          <li><strong>進め方を選ぶ</strong>AI 顧問による自作支援か、開発代行かを選べます。</li>
+        </ol>
+        <a class="primary-button" href="https://beginai-hp-service.vercel.app/#contact">相談・ヒアリングを申し込む</a>
       </div>
     </div>
   </section>
