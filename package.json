@@ -1,0 +1,14 @@
+{
+  "name": "beginai-site",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "nodemailer": "10.1.1"
+  }
+}
