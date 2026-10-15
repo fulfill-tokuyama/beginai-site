@@ -89,26 +89,162 @@
       align-items: center;
     }
 
-    .header-cta {
+    .menu-toggle {
       display: inline-flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 38px;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
       margin-left: 28px;
-      padding: 8px 18px;
-      border-radius: 999px;
+      border: 0;
+      border-radius: 50%;
       background: var(--blue-600);
-      color: var(--white);
-      font-size: 13px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.2s;
+      cursor: pointer;
+      transition: background 0.2s;
     }
 
-    .header-cta:hover {
-      background: var(--blue-700);
-      transform: translateY(-1px);
+    .menu-toggle:hover { background: var(--blue-700); }
+
+    .menu-toggle span {
+      display: block;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--white);
     }
+
+    .menu-toggle span:nth-child(1) { width: 18px; margin-left: 4px; }
+    .menu-toggle span:nth-child(2) { width: 22px; }
+    .menu-toggle span:nth-child(3) { width: 14px; margin-left: 8px; }
+
+    body.menu-open { overflow: hidden; }
+
+    .site-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      overflow-y: auto;
+      background:
+        radial-gradient(circle at 75% 30%, rgba(59, 130, 246, 0.35), transparent 45%),
+        linear-gradient(160deg, var(--blue-700) 0%, var(--blue-800) 100%);
+      color: var(--white);
+      animation: menu-fade 0.25s ease;
+    }
+
+    .site-menu[hidden] { display: none; }
+
+    @keyframes menu-fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .site-menu-head {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .site-menu-logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .menu-close {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      background: none;
+      cursor: pointer;
+    }
+
+    .menu-close::before,
+    .menu-close::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 26px;
+      height: 2px;
+      background: var(--white);
+    }
+
+    .menu-close::before { transform: translate(-50%, -50%) rotate(45deg); }
+    .menu-close::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+    .site-menu-list,
+    .submenu { list-style: none; }
+
+    .site-menu-list {
+      max-width: 1100px;
+      margin: 24px auto 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .site-menu-list > li { border-bottom: 1px solid rgba(255, 255, 255, 0.25); }
+
+    .site-menu-list a {
+      display: block;
+      padding: 22px 24px;
+      color: var(--white);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .site-menu-list a:hover { background: rgba(255, 255, 255, 0.08); }
+
+    .site-menu-row { display: flex; }
+    .site-menu-row a { flex: 1; }
+
+    .submenu-toggle {
+      position: relative;
+      flex: 0 0 68px;
+      border: 0;
+      border-left: 1px solid rgba(255, 255, 255, 0.25);
+      background: none;
+      cursor: pointer;
+    }
+
+    .submenu-toggle::before,
+    .submenu-toggle::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 18px;
+      height: 1.5px;
+      background: var(--white);
+      transform: translate(-50%, -50%);
+      transition: transform 0.2s;
+    }
+
+    .submenu-toggle::after { transform: translate(-50%, -50%) rotate(90deg); }
+    .submenu-toggle[aria-expanded="true"]::after { transform: translate(-50%, -50%) rotate(0deg); }
+
+    .submenu {
+      padding-bottom: 12px;
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    .submenu a {
+      padding: 12px 24px 12px 40px;
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .site-menu-list .site-menu-contact { color: rgba(255, 255, 255, 0.75); }
 
     /* ===== Hero ===== */
     .hero {
@@ -831,7 +967,10 @@
       .ceo-photo { width: 100%; max-width: 280px; margin: 0 auto; }
       .section-title { font-size: 24px; }
       nav { display: none; }
-      .header-cta { margin-left: 0; padding: 8px 14px; }
+      .menu-toggle { margin-left: 0; }
+      .site-menu-head { padding: 0 20px; }
+      .site-menu-list a { padding-left: 20px; padding-right: 20px; }
+      .submenu a { padding-left: 36px; }
     }
 
     @media (max-width: 420px) {
@@ -854,10 +993,38 @@
           <a href="#company">Company</a>
           <a href="#contact">Contact</a>
         </nav>
-        <a class="header-cta" href="#contact">相談する</a>
+        <button class="menu-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="site-menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Menu -->
+  <div class="site-menu" id="site-menu" role="dialog" aria-modal="true" aria-label="サイトメニュー" hidden>
+    <div class="site-menu-head">
+      <a href="#" class="site-menu-logo">BeginAI</a>
+      <button class="menu-close" type="button" aria-label="メニューを閉じる"></button>
+    </div>
+    <ul class="site-menu-list">
+      <li><a href="#mission">BeginAIについて</a></li>
+      <li class="has-sub">
+        <div class="site-menu-row">
+          <a href="#services">事業内容</a>
+          <button class="submenu-toggle" type="button" aria-expanded="false" aria-controls="submenu-services" aria-label="事業内容の項目を開く"></button>
+        </div>
+        <ul class="submenu" id="submenu-services" hidden>
+          <li><a href="#advisor">AI 顧問</a></li>
+          <li><a href="#development">開発代行</a></li>
+          <li><a href="#examples">実績・事例</a></li>
+          <li><a href="#consultation">ご相談の流れ</a></li>
+        </ul>
+      </li>
+      <li><a href="#ceo">代表挨拶</a></li>
+      <li><a href="#company">会社概要</a></li>
+      <li><a href="#contact" class="site-menu-contact">お問い合わせ</a></li>
+    </ul>
+  </div>
 
   <!-- Hero -->
   <section class="hero">
@@ -895,7 +1062,7 @@
       <div class="section-desc">自分たちでつくるための伴走支援と、つくるところまで任せられる開発代行。まず相談内容を伺い、無料デモで確認してから、合う進め方を選べます。</div>
 
       <div class="service-grid">
-        <article class="service-card">
+        <article class="service-card" id="advisor">
           <div class="service-type">自社で進めたい方へ</div>
           <h3>AI 顧問</h3>
           <p class="service-lead">業務を整理し、使うAIと必要な仕組みを決め、自社で形にできるよう伴走します。</p>
@@ -936,7 +1103,7 @@
           </div>
         </article>
 
-        <article class="service-card featured">
+        <article class="service-card featured" id="development">
           <div class="service-type">実装まで任せたい方へ</div>
           <h3>開発代行</h3>
           <p class="service-lead">相談内容をもとに、業務に合わせたAIツールやWebサービスを設計・実装します。</p>
@@ -979,7 +1146,7 @@
         </article>
       </div>
 
-      <div class="examples-panel">
+      <div class="examples-panel" id="examples">
         <div class="examples-heading">
           <h3>代表が実際に形にした例</h3>
           <span class="examples-badge">代表の個人制作例</span>
@@ -1146,6 +1313,36 @@
   </footer>
 
   <script>
+    (() => {
+      const menu = document.getElementById('site-menu');
+      const openButton = document.querySelector('.menu-toggle');
+      const closeButton = menu.querySelector('.menu-close');
+
+      const setMenu = (open) => {
+        menu.hidden = !open;
+        openButton.setAttribute('aria-expanded', String(open));
+        document.body.classList.toggle('menu-open', open);
+        (open ? closeButton : openButton).focus();
+      };
+
+      openButton.addEventListener('click', () => setMenu(true));
+      closeButton.addEventListener('click', () => setMenu(false));
+      menu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setMenu(false));
+      });
+      menu.querySelectorAll('.submenu-toggle').forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+          const submenu = document.getElementById(toggle.getAttribute('aria-controls'));
+          const open = submenu.hidden;
+          submenu.hidden = !open;
+          toggle.setAttribute('aria-expanded', String(open));
+        });
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !menu.hidden) setMenu(false);
+      });
+    })();
+
     (() => {
       const form = document.getElementById('contact-form');
       const submitButton = form.querySelector('.contact-submit');
