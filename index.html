@@ -859,6 +859,25 @@
       opacity: 0.65;
     }
 
+    .form-consent {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+      color: var(--gray-700);
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .form-consent input {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+      accent-color: var(--blue-600);
+    }
+
+    .form-consent a { color: var(--blue-600); }
+
     .form-note {
       margin-top: 12px;
       color: var(--gray-500);
@@ -1292,8 +1311,12 @@
             <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off">
           </div>
         </div>
+        <label class="form-consent" for="contact-consent">
+          <input id="contact-consent" type="checkbox" required>
+          <span><a href="/privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意する <span class="required-mark">必須</span></span>
+        </label>
         <button class="contact-submit" type="submit">相談内容を送信する</button>
-        <p class="form-note">入力いただいた情報は、お問い合わせへの回答のために使用します。</p>
+        <p class="form-note">入力いただいた情報は、お問い合わせへの回答とご連絡のために使用します。</p>
         <div class="form-status" id="contact-status" role="status" aria-live="polite"></div>
       </form>
     </div>
