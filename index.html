@@ -333,7 +333,6 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 24px;
-      margin-bottom: 32px;
     }
 
     .service-card {
@@ -449,65 +448,6 @@
 
     .service-method strong {
       margin-bottom: 4px;
-    }
-
-    .examples-panel {
-      padding: 36px;
-      border-radius: 16px;
-      background: var(--gray-50);
-      border: 1px solid var(--gray-200);
-    }
-
-    .examples-heading {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 22px;
-    }
-
-    .examples-heading h3 {
-      color: var(--gray-900);
-      font-size: 20px;
-    }
-
-    .examples-badge {
-      flex-shrink: 0;
-      padding: 5px 10px;
-      border: 1px solid var(--blue-100);
-      border-radius: 999px;
-      color: var(--blue-700);
-      background: var(--white);
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .example-list {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      list-style: none;
-      margin-bottom: 20px;
-    }
-
-    .example-list li {
-      display: flex;
-      align-items: center;
-      min-height: 62px;
-      padding: 12px 14px;
-      border: 1px solid var(--gray-200);
-      border-radius: 8px;
-      background: var(--white);
-      color: var(--gray-700);
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 1.45;
-    }
-
-    .examples-disclaimer {
-      color: var(--gray-500);
-      font-size: 12px;
-      line-height: 1.7;
     }
 
     /* ===== CEO ===== */
@@ -891,9 +831,6 @@
       .service-grid { grid-template-columns: 1fr; }
       .service-card { padding: 28px 24px; }
       .service-summary { min-height: 0; }
-      .examples-panel { padding: 28px 20px; }
-      .examples-heading { align-items: flex-start; flex-direction: column; }
-      .example-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .contact-layout { grid-template-columns: 1fr; gap: 32px; }
       .contact-form { padding: 28px 24px; }
       .form-grid { grid-template-columns: 1fr; }
@@ -906,10 +843,6 @@
       .site-menu-item { padding-left: 20px; padding-right: 20px; }
       .site-menu-chips { padding-left: 20px; padding-right: 20px; }
       .site-menu-cta { margin-left: 20px; margin-right: 20px; }
-    }
-
-    @media (max-width: 420px) {
-      .example-list { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -942,7 +875,6 @@
       <div class="site-menu-chips">
         <a href="#advisor">AI 顧問</a>
         <a href="#development">開発代行</a>
-        <a href="#examples">実績・事例</a>
       </div>
       <a class="site-menu-item" href="#ceo"><strong>代表挨拶</strong><small>Message</small></a>
       <a class="site-menu-item" href="#company"><strong>会社概要</strong><small>Company</small></a>
@@ -1069,24 +1001,6 @@
             <p>相談・ヒアリングから要件整理、設計、実装まで一緒に進めます。内容と優先順位を確認しながら、必要な範囲を形にします。</p>
           </div>
         </article>
-      </div>
-
-      <div class="examples-panel" id="examples">
-        <div class="examples-heading">
-          <h3>代表が実際に形にした例</h3>
-          <span class="examples-badge">代表の個人制作例</span>
-        </div>
-        <ul class="example-list">
-          <li>顧客管理（CRM）</li>
-          <li>企業調査</li>
-          <li>商談準備</li>
-          <li>AIタスク管理</li>
-          <li>記事・投稿案の作成</li>
-          <li>OCR・文字読み取り</li>
-          <li>FAQ対応</li>
-          <li>Web・学習サイト</li>
-        </ul>
-        <p class="examples-disclaimer">※ 掲載例は代表が個人で制作したもので、顧客への納品実績を示すものではありません。OCRなど一部は試作・検証段階です。</p>
       </div>
     </div>
   </section>
