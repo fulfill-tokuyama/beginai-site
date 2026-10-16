@@ -1274,36 +1274,41 @@
       <form class="contact-form" id="contact-form">
         <div class="form-grid">
           <div class="form-field">
-            <label for="contact-company">会社名・屋号 <span class="required-mark">必須</span></label>
+            <label for="contact-company">貴社名 <span class="required-mark">必須</span></label>
             <input id="contact-company" name="company" type="text" autocomplete="organization" maxlength="100" required>
           </div>
           <div class="form-field">
-            <label for="contact-name">お名前 <span class="required-mark">必須</span></label>
+            <label for="contact-department">部署・役職 <span class="required-mark">必須</span></label>
+            <input id="contact-department" name="department" type="text" autocomplete="organization-title" maxlength="100" required>
+          </div>
+          <div class="form-field">
+            <label for="contact-name">氏名 <span class="required-mark">必須</span></label>
             <input id="contact-name" name="name" type="text" autocomplete="name" maxlength="80" required>
+          </div>
+          <div class="form-field">
+            <label for="contact-kana">フリガナ <span class="required-mark">必須</span></label>
+            <input id="contact-kana" name="kana" type="text" maxlength="80" required>
+          </div>
+          <div class="form-field">
+            <label for="contact-phone">電話番号 <span class="required-mark">必須</span></label>
+            <input id="contact-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" required>
           </div>
           <div class="form-field">
             <label for="contact-email">メールアドレス <span class="required-mark">必須</span></label>
             <input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required>
           </div>
-          <div class="form-field">
-            <label for="contact-phone">電話番号</label>
-            <input id="contact-phone" name="phone" type="tel" autocomplete="tel" maxlength="30">
-          </div>
-          <div class="form-field">
-            <label for="contact-industry">業種</label>
-            <input id="contact-industry" name="industry" type="text" autocomplete="organization-title" maxlength="80">
-          </div>
-          <div class="form-field">
-            <label for="contact-service">ご希望の相談 <span class="required-mark">必須</span></label>
-            <select id="contact-service" name="service" required>
-              <option value="">選択してください</option>
-              <option value="undecided">相談して決めたい</option>
-              <option value="ai-advisor">AI顧問（自社で進めたい）</option>
-              <option value="development">開発代行（実装まで任せたい）</option>
+          <div class="form-field full">
+            <label for="contact-inquiry">お問合せ内容 <span class="required-mark">必須</span></label>
+            <select id="contact-inquiry" name="inquiry" required>
+              <option value="">―以下から選択してください―</option>
+              <option value="service">サービスに関するお問い合わせ</option>
+              <option value="partnership">パートナー、協業のご相談</option>
+              <option value="estimate">お見積り依頼</option>
+              <option value="other">その他</option>
             </select>
           </div>
           <div class="form-field full">
-            <label for="contact-message">ご相談内容 <span class="required-mark">必須</span></label>
+            <label for="contact-message">お問合せ内容 詳細 <span class="required-mark">必須</span></label>
             <textarea id="contact-message" name="message" maxlength="2000" required placeholder="現在のお困りごとや、AIで実現したいことをご記入ください。"></textarea>
           </div>
           <div class="form-honeypot" aria-hidden="true">

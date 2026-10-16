@@ -41,11 +41,12 @@ function setTestEnvironment() {
 function validBody(overrides = {}) {
   return {
     company: 'テスト株式会社',
+    department: '経営企画部 部長',
     name: 'テスト 太郎',
-    email: 'visitor@example.com',
+    kana: 'テスト タロウ',
     phone: '03-1234-5678',
-    industry: '製造業',
-    service: 'ai-advisor',
+    email: 'visitor@example.com',
+    inquiry: 'estimate',
     message: '業務整理について相談したいです。',
     website: '',
     ...overrides
@@ -127,7 +128,9 @@ test('uses Google Workspace SMTP without making a real network connection', asyn
     name: 'テスト 太郎',
     address: 'visitor@example.com'
   });
-  assert.match(mailCalls[0].text, /AI顧問/);
+  assert.match(mailCalls[0].text, /お問合せ内容: お見積り依頼/);
+  assert.match(mailCalls[0].text, /部署・役職: 経営企画部 部長/);
+  assert.match(mailCalls[0].text, /フリガナ: テスト タロウ/);
 });
 
 test('fails closed when an SMTP environment variable is missing', async () => {
@@ -149,7 +152,10 @@ test('rejects cross-origin requests', async () => {
 test('rejects invalid methods and input', async () => {
   assert.equal((await invoke({ method: 'GET' })).statusCode, 405);
   assert.equal((await invoke({ body: validBody({ email: 'invalid' }) })).statusCode, 400);
-  assert.equal((await invoke({ body: validBody({ service: 'unknown' }) })).statusCode, 400);
+  assert.equal((await invoke({ body: validBody({ inquiry: 'unknown' }) })).statusCode, 400);
+  assert.equal((await invoke({ body: validBody({ department: '' }) })).statusCode, 400);
+  assert.equal((await invoke({ body: validBody({ kana: '' }) })).statusCode, 400);
+  assert.equal((await invoke({ body: validBody({ phone: '' }) })).statusCode, 400);
   assert.equal((await invoke({ body: validBody({ message: '' }) })).statusCode, 400);
   assert.equal(mailCalls.length, 0);
 });

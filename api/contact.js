@@ -1,10 +1,11 @@
 const nodemailer = require('nodemailer');
 
 const MAX_BODY_BYTES = 12000;
-const SERVICE_LABELS = {
-  undecided: '相談して決めたい',
-  'ai-advisor': 'AI顧問（自社で進めたい）',
-  development: '開発代行（実装まで任せたい）'
+const INQUIRY_LABELS = {
+  service: 'サービスに関するお問い合わせ',
+  partnership: 'パートナー、協業のご相談',
+  estimate: 'お見積り依頼',
+  other: 'その他'
 };
 const SMTP_ERROR_CODES = new Set([
   'EAUTH',
@@ -139,21 +140,22 @@ module.exports = async function contactHandler(request, response) {
   }
 
   const company = singleLineValue(body.company, 100);
+  const department = singleLineValue(body.department, 100);
   const name = singleLineValue(body.name, 80);
-  const email = singleLineValue(body.email, 254);
+  const kana = singleLineValue(body.kana, 80);
   const phone = singleLineValue(body.phone, 30);
-  const industry = singleLineValue(body.industry, 80);
-  const service = singleLineValue(body.service, 40);
+  const email = singleLineValue(body.email, 254);
+  const inquiry = singleLineValue(body.inquiry, 40);
   const message = messageValue(body.message, 2000);
 
-  if (!company || !name || !email || !service || !message) {
+  if (!company || !department || !name || !kana || !phone || !email || !inquiry || !message) {
     return response.status(400).json({ error: '必須項目を入力してください' });
   }
   if (!isValidEmail(email)) {
     return response.status(400).json({ error: 'メールアドレスを確認してください' });
   }
-  if (!Object.prototype.hasOwnProperty.call(SERVICE_LABELS, service)) {
-    return response.status(400).json({ error: 'ご希望の相談を選択してください' });
+  if (!Object.prototype.hasOwnProperty.call(INQUIRY_LABELS, inquiry)) {
+    return response.status(400).json({ error: 'お問合せ内容を選択してください' });
   }
 
   const smtp = loadSmtpConfig();
@@ -182,14 +184,15 @@ module.exports = async function contactHandler(request, response) {
   const text = [
     'BeginAI 公式サイトからお問い合わせが届きました。',
     '',
-    `会社名・屋号: ${company}`,
-    `お名前: ${name}`,
+    `貴社名: ${company}`,
+    `部署・役職: ${department}`,
+    `氏名: ${name}`,
+    `フリガナ: ${kana}`,
+    `電話番号: ${phone}`,
     `メールアドレス: ${email}`,
-    `電話番号: ${phone || '未入力'}`,
-    `業種: ${industry || '未入力'}`,
-    `ご希望の相談: ${SERVICE_LABELS[service]}`,
+    `お問合せ内容: ${INQUIRY_LABELS[inquiry]}`,
     '',
-    'ご相談内容:',
+    'お問合せ内容 詳細:',
     message
   ].join('\n');
 
