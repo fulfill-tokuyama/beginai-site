@@ -510,89 +510,6 @@
       line-height: 1.7;
     }
 
-    .consultation-panel {
-      margin-top: 32px;
-      padding: 42px;
-      border-radius: 16px;
-      background: var(--blue-900);
-      color: var(--white);
-    }
-
-    .consultation-panel h3 {
-      margin-bottom: 8px;
-      font-size: 24px;
-    }
-
-    .consultation-panel > p {
-      max-width: 720px;
-      color: var(--blue-100);
-      font-size: 15px;
-    }
-
-    .consultation-flow {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin: 28px 0;
-      list-style: none;
-      counter-reset: consultation-step;
-    }
-
-    .consultation-flow li {
-      counter-increment: consultation-step;
-      position: relative;
-      min-height: 108px;
-      padding: 18px 16px 18px 54px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--blue-100);
-      font-size: 13px;
-    }
-
-    .consultation-flow li::before {
-      content: counter(consultation-step);
-      position: absolute;
-      left: 16px;
-      top: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: var(--blue-500);
-      color: var(--white);
-      font-weight: 700;
-    }
-
-    .consultation-flow strong {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--white);
-      font-size: 15px;
-    }
-
-    .primary-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 12px 24px;
-      border-radius: 8px;
-      background: var(--white);
-      color: var(--blue-800);
-      font-size: 15px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: transform 0.2s, background 0.2s;
-    }
-
-    .primary-button:hover {
-      background: var(--blue-50);
-      transform: translateY(-1px);
-    }
-
     /* ===== CEO ===== */
     .ceo-section {
       background: var(--gray-50);
@@ -977,8 +894,6 @@
       .examples-panel { padding: 28px 20px; }
       .examples-heading { align-items: flex-start; flex-direction: column; }
       .example-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .consultation-panel { padding: 32px 24px; }
-      .consultation-flow { grid-template-columns: 1fr; }
       .contact-layout { grid-template-columns: 1fr; gap: 32px; }
       .contact-form { padding: 28px 24px; }
       .form-grid { grid-template-columns: 1fr; }
@@ -995,7 +910,6 @@
 
     @media (max-width: 420px) {
       .example-list { grid-template-columns: 1fr; }
-      .primary-button { width: 100%; }
     }
   </style>
 </head>
@@ -1029,7 +943,6 @@
         <a href="#advisor">AI 顧問</a>
         <a href="#development">開発代行</a>
         <a href="#examples">実績・事例</a>
-        <a href="#consultation">ご相談の流れ</a>
       </div>
       <a class="site-menu-item" href="#ceo"><strong>代表挨拶</strong><small>Message</small></a>
       <a class="site-menu-item" href="#company"><strong>会社概要</strong><small>Company</small></a>
@@ -1175,17 +1088,6 @@
         </ul>
         <p class="examples-disclaimer">※ 掲載例は代表が個人で制作したもので、顧客への納品実績を示すものではありません。OCRなど一部は試作・検証段階です。</p>
       </div>
-
-      <div class="consultation-panel" id="consultation">
-        <h3>相談から、無料デモで確かめる</h3>
-        <p>まずは業務や実現したいことを伺います。相談内容に近い無料デモを見て、実際のイメージを確認してから進め方を選べます。</p>
-        <ol class="consultation-flow">
-          <li><strong>相談・ヒアリング</strong>対象業務、困りごと、実現したいことを整理します。</li>
-          <li><strong>無料デモで確認</strong>具体的な画面と動きで、AI活用のイメージを確かめます。</li>
-          <li><strong>進め方を選ぶ</strong>AI 顧問による自作支援か、開発代行かを選べます。</li>
-        </ol>
-        <a class="primary-button" href="#contact">相談・ヒアリングを申し込む</a>
-      </div>
     </div>
   </section>
 
@@ -1263,7 +1165,7 @@
       <div class="contact-copy">
         <div class="section-label">Contact</div>
         <div class="section-title">まずは、やりたいことをお聞かせください</div>
-        <div class="section-desc">まだ要件が決まっていなくても大丈夫です。現在の業務や困りごとを伺い、無料デモでイメージを確かめながら、合う支援方法を一緒に整理します。</div>
+        <div class="section-desc">まだ要件が決まっていなくても大丈夫です。現在の業務や困りごとを伺い、適切な支援方法を一緒に整理します。</div>
         <ul class="contact-points">
           <li>AIを使う業務が決まっていなくても相談できます</li>
           <li>自社でつくるか、開発を任せるかは相談後に選べます</li>
